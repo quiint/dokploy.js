@@ -1,9 +1,12 @@
 # dokploy.js
+A simple SDK to interact with a Dokploy instance.
 
-To install dependencies:
+Up to date to v0.8.2 of Dokploy.
+
+To install:
 
 ```bash
-bun install
+bun install dokploy.js
 ```
 
 To run:
