@@ -1,6 +1,10 @@
 {
   "name": "dokploy.js",
-  "module": "index.js",
+  "version": "0.0.1",
+  "author": "Quint <quiint@quiint.email",
+  "module": "./src/index.js",
+  "license": "MIT",
+  "keywords": ["dokploy", "dokploy.js", "dokployjs"],
   "type": "module",
   "scripts": {
     "test": "jest"

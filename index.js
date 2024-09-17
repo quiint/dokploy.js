@@ -1,36 +1,34 @@
 // src/index.js
 
-import Applications from './applications.js';
-// src/index.js
-// ... other imports ...
-import Admin from './admin.js';
-import Auth from './auth.js';
-import Backup from './backup.js';
-import Certificates from './certificates.js';
-import Cluster from './cluster.js';
-import Compose from './compose.js';
-import Deployment from './deployment.js';
-import Destination from './destination.js';
-import Docker from './docker.js';
-import Domain from './domain.js';
-import MariaDB from './mariadb.js';
-import Mongo from './mongo.js';
-import Mounts from './mounts.js';
-import MySQL from './mysql.js';
-import Port from './port.js';
-import Postgres from './postgres.js';
-import Project from './project.js';
-import Redirects from './redirects.js';
-import Redis from './redis.js';
-import Registry from './registry.js';
-import Security from './security.js';
-import Settings from './settings.js';
-import SSHKey from './sshKey.js';
-import GitProvider from './gitProvider.js';
-import Bitbucket from './bitbucket.js';
-import Github from './github.js';
-import Gitlab from './gitlab.js';
-import User from './user.js';
+import Applications from './src/applications.js';
+import Admin from './src/admin.js';
+import Auth from './src/auth.js';
+import Backup from './src/backup.js';
+import Certificates from './src/certificates.js';
+import Cluster from './src/cluster.js';
+import Compose from './src/compose.js';
+import Deployment from './src/deployment.js';
+import Destination from './src/destination.js';
+import Docker from './src/docker.js';
+import Domain from './src/domain.js';
+import MariaDB from './src/mariadb.js';
+import Mongo from './src/mongo.js';
+import Mounts from './src/mounts.js';
+import MySQL from './src/mysql.js';
+import Port from './src/port.js';
+import Postgres from './src/postgres.js';
+import Project from './src/project.js';
+import Redirects from './src/redirects.js';
+import Redis from './src/redis.js';
+import Registry from './src/registry.js';
+import Security from './src/security.js';
+import Settings from './src/settings.js';
+import SSHKey from './src/sshKey.js';
+import GitProvider from './src/gitProvider.js';
+import Bitbucket from './src/bitbucket.js';
+import Github from './src/github.js';
+import Gitlab from './src/gitlab.js';
+import User from './src/user.js';
 
 export default class Dokploy {
   constructor(baseUrl, apiToken) {
