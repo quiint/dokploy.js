@@ -20,7 +20,8 @@ export default class Api {
 
     const response = await fetch(url, options);
     if (!response.ok) {
-      throw new Error(`Error: ${response.statusText}`);
+      const message = await response.json();
+      throw new Error(`${message.code} - ${message.message}`);
     }
     const contentType = response.headers.get('Content-Type');
     if (contentType && contentType.includes('application/json')) {
