@@ -8,18 +8,44 @@ export default class Admin extends Api {
   }
 
   async createUserInvitation(data) {
-    return this.makeRequest('/admin.createUserInvitation', 'POST', data);
+    return this.makeRequest('/admin.createUserInvitation', 'POST', { email });
   }
 
   async removeUser(data) {
-    return this.makeRequest('/admin.removeUser', 'POST', data);
+    return this.makeRequest('/admin.removeUser', 'POST', { authId });
   }
 
   async getUserByToken(token) {
     return this.makeRequest(`/admin.getUserByToken?token=${token}`);
   }
 
-  async assignPermissions(data) {
-    return this.makeRequest('/admin.assignPermissions', 'POST', data);
-  }
+  async assignPermissions(
+    userId,
+    canCreateProjects,
+    canCreateServices,
+    canDeleteProjects,
+    canDeleteServices,
+    accesedProjects,
+    accesedServices,
+    canAccessToTraefikFiles,
+    canAccessToDocker,
+    canAccessToAPI,
+    canAccessToSSHKeys,
+    canAccessToGitProviders
+  ) {
+    return this.makeRequest('/admin.assignPermissions', 'POST', {
+      userId,
+      canCreateProjects,
+      canCreateServices,
+      canDeleteProjects,
+      canDeleteServices,
+      accesedProjects,
+      accesedServices,
+      canAccessToTraefikFiles,
+      canAccessToDocker,
+      canAccessToAPI,
+      canAccessToSSHKeys,
+      canAccessToGitProviders,
+    });
+}
 }

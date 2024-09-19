@@ -3,47 +3,115 @@
 import Api from '../utils/makeRequest.js';
 
 export default class Postgres extends Api {
-  async create(data) {
-    return this.makeRequest('/postgres.create', 'POST', data);
-  }
+    async create(
+        name,
+        appName,
+        databaseName,
+        databaseUser,
+        databasePassword,
+        dockerImage,
+        projectId,
+        description
+      ) {
+        return this.makeRequest('/postgres.create', 'POST', {
+          name,
+          appName,
+          databaseName,
+          databaseUser,
+          databasePassword,
+          dockerImage,
+          projectId,
+          description,
+        });
+      }
 
   async one(postgresId) {
     return this.makeRequest(`/postgres.one?postgresId=${postgresId}`);
   }
 
-  async start(data) {
-    return this.makeRequest('/postgres.start', 'POST', data);
+  async start(postgresId) {
+    return this.makeRequest('/postgres.start', 'POST', { postgresId });
   }
 
-  async stop(data) {
-    return this.makeRequest('/postgres.stop', 'POST', data);
+  async stop(postgresId) {
+    return this.makeRequest('/postgres.stop', 'POST', { postgresId });
   }
 
-  async saveExternalPort(data) {
-    return this.makeRequest('/postgres.saveExternalPort', 'POST', data);
+  async saveExternalPort(postgresId, externalPort) {
+    return this.makeRequest('/postgres.saveExternalPort', 'POST', {
+      postgresId,
+      externalPort,
+    });
   }
 
-  async deploy(data) {
-    return this.makeRequest('/postgres.deploy', 'POST', data);
+  async deploy(postgresId) {
+    return this.makeRequest('/postgres.deploy', 'POST', { postgresId });
   }
 
-  async changeStatus(data) {
-    return this.makeRequest('/postgres.changeStatus', 'POST', data);
+  async changeStatus(postgresId, applicationStatus) {
+    return this.makeRequest('/postgres.changeStatus', 'POST', {
+      postgresId,
+      applicationStatus,
+    });
   }
 
-  async remove(data) {
-    return this.makeRequest('/postgres.remove', 'POST', data);
+  async remove(postgresId) {
+    return this.makeRequest('/postgres.remove', 'POST', { postgresId });
   }
 
-  async saveEnvironment(data) {
-    return this.makeRequest('/postgres.saveEnvironment', 'POST', data);
+  async saveEnvironment(postgresId, env) {
+    return this.makeRequest('/postgres.saveEnvironment', 'POST', {
+      postgresId,
+      env,
+    });
   }
 
-  async reload(data) {
-    return this.makeRequest('/postgres.reload', 'POST', data);
+  async reload(postgresId, appName) {
+    return this.makeRequest('/postgres.reload', 'POST', {
+      postgresId,
+      appName,
+    });
   }
 
-  async update(data) {
-    return this.makeRequest('/postgres.update', 'POST', data);
+  async update(
+    postgresId,
+    name,
+    appName,
+    databaseName,
+    databaseUser,
+    databasePassword,
+    description,
+    dockerImage,
+    command,
+    env,
+    memoryReservation,
+    externalPort,
+    memoryLimit,
+    cpuReservation,
+    cpuLimit,
+    applicationStatus,
+    createdAt,
+    projectId
+  ) {
+    return this.makeRequest('/postgres.update', 'POST', {
+      postgresId,
+      name,
+      appName,
+      databaseName,
+      databaseUser,
+      databasePassword,
+      description,
+      dockerImage,
+      command,
+      env,
+      memoryReservation,
+      externalPort,
+      memoryLimit,
+      cpuReservation,
+      cpuLimit,
+      applicationStatus,
+      createdAt,
+      projectId,
+    });
   }
 }

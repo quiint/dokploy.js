@@ -7,7 +7,7 @@ export default class GitProvider extends Api {
     return this.makeRequest('/gitProvider.getAll');
   }
 
-  async remove(data) {
-    return this.makeRequest('/gitProvider.remove', 'POST', data);
+  async remove(gitProviderId) {
+    return this.makeRequest('/gitProvider.remove', 'POST', { gitProviderId });
   }
 }

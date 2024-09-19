@@ -7,8 +7,8 @@ export default class Cluster extends Api {
     return this.makeRequest('/cluster.getNodes');
   }
 
-  async removeWorker(data) {
-    return this.makeRequest('/cluster.removeWorker', 'POST', data);
+  async removeWorker(nodeId) {
+    return this.makeRequest('/cluster.removeWorker', 'POST', { nodeId });
   }
 
   async addWorker() {

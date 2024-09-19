@@ -23,11 +23,33 @@ export default class Github extends Api {
     return this.makeRequest('/github.githubProviders');
   }
 
-  async testConnection(data) {
-    return this.makeRequest('/github.testConnection', 'POST', data);
+  async testConnection(githubId) {
+    return this.makeRequest('/github.testConnection', 'POST', { githubId });
   }
 
-  async update(data) {
-    return this.makeRequest('/github.update', 'POST', data);
+  async update(
+    githubId,
+    githubAppName,
+    githubAppId,
+    githubClientId,
+    githubClientSecret,
+    githubInstallationId,
+    githubPrivateKey,
+    githubWebhookSecret,
+    gitProviderId,
+    name
+  ) {
+    return this.makeRequest('/github.update', 'POST', {
+      githubId,
+      githubAppName,
+      githubAppId,
+      githubClientId,
+      githubClientSecret,
+      githubInstallationId,
+      githubPrivateKey,
+      githubWebhookSecret,
+      gitProviderId,
+      name,
+    });
   }
 }

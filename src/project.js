@@ -3,8 +3,8 @@
 import Api from '../utils/makeRequest.js';
 
 export default class Project extends Api {
-  async create(data) {
-    return this.makeRequest('/project.create', 'POST', data);
+  async create(name, description) {
+    return this.makeRequest('/project.create', 'POST', { name, description });
   }
 
   async one(projectId) {
@@ -15,11 +15,15 @@ export default class Project extends Api {
     return this.makeRequest('/project.all');
   }
 
-  async remove(data) {
-    return this.makeRequest('/project.remove', 'POST', data);
+  async remove(projectId) {
+    return this.makeRequest('/project.remove', 'POST', { projectId });
   }
 
-  async update(data) {
-    return this.makeRequest('/project.update', 'POST', data);
+  async update(name, description, projectId) {
+    return this.makeRequest('/project.update', 'POST', {
+        name, 
+        description,
+        projectId
+    });
   }
 }

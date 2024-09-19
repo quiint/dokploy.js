@@ -3,13 +3,42 @@
 import Api from '../utils/makeRequest.js';
 
 export default class Destination extends Api {
-  async create(data) {
-    return this.makeRequest('/destination.create', 'POST', data);
-  }
-
-  async testConnection(data) {
-    return this.makeRequest('/destination.testConnection', 'POST', data);
-  }
+    async create(
+        name,
+        accessKey,
+        bucket,
+        region,
+        endpoint,
+        secretAccessKey
+      ) {
+        return this.makeRequest('/destination.create', 'POST', {
+          name,
+          accessKey,
+          bucket,
+          region,
+          endpoint,
+          secretAccessKey,
+        });
+      }
+    
+      async testConnection(
+        name,
+        accessKey,
+        bucket,
+        region,
+        endpoint,
+        secretAccessKey
+      ) {
+        return this.makeRequest('/destination.testConnection', 'POST', {
+          name,
+          accessKey,
+          bucket,
+          region,
+          endpoint,
+          secretAccessKey,
+        });
+      }
+    
 
   async one(destinationId) {
     return this.makeRequest(`/destination.one?destinationId=${destinationId}`);
@@ -19,11 +48,27 @@ export default class Destination extends Api {
     return this.makeRequest('/destination.all');
   }
 
-  async remove(data) {
-    return this.makeRequest('/destination.remove', 'POST', data);
+  async remove(destinationId) {
+    return this.makeRequest('/destination.remove', 'POST', { destinationId });
   }
 
-  async update(data) {
-    return this.makeRequest('/destination.update', 'POST', data);
+  async update(
+    name,
+    accessKey,
+    bucket,
+    region,
+    endpoint,
+    secretAccessKey,
+    destinationId
+  ) {
+    return this.makeRequest('/destination.update', 'POST', {
+      name,
+      accessKey,
+      bucket,
+      region,
+      endpoint,
+      secretAccessKey,
+      destinationId,
+    });
   }
 }

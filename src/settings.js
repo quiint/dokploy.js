@@ -11,8 +11,10 @@ export default class Settings extends Api {
     return this.makeRequest('/settings.reloadTraefik', 'POST');
   }
 
-  async toggleDashboard(data) {
-    return this.makeRequest('/settings.toggleDashboard', 'POST', data);
+  async toggleDashboard(enableDashboard) {
+    return this.makeRequest('/settings.toggleDashboard', 'POST', {
+      enableDashboard,
+    });
   }
 
   async cleanUnusedImages() {
@@ -43,45 +45,60 @@ export default class Settings extends Api {
     return this.makeRequest('/settings.cleanMonitoring', 'POST');
   }
 
-  async saveSSHPrivateKey(data) {
-    return this.makeRequest('/settings.saveSSHPrivateKey', 'POST', data);
+  async saveSSHPrivateKey(sshPrivateKey) {
+    return this.makeRequest('/settings.saveSSHPrivateKey', 'POST', {
+      sshPrivateKey,
+    });
   }
-
-  async assignDomainServer(data) {
-    return this.makeRequest('/settings.assignDomainServer', 'POST', data);
+  async assignDomainServer(letsEncryptEmail, host, certificateType) {
+    return this.makeRequest('/settings.assignDomainServer', 'POST', {
+      letsEncryptEmail,
+      host,
+      certificateType,
+    });
   }
 
   async cleanSSHPrivateKey() {
     return this.makeRequest('/settings.cleanSSHPrivateKey', 'POST');
   }
 
-  async updateDockerCleanup(data) {
-    return this.makeRequest('/settings.updateDockerCleanup', 'POST', data);
-  }
+    async updateDockerCleanup(enableDockerCleanup) {
+      return this.makeRequest('/settings.updateDockerCleanup', 'POST', {
+        enableDockerCleanup,
+      });
+    }
 
   async readTraefikConfig() {
     return this.makeRequest('/settings.readTraefikConfig');
   }
 
-  async updateTraefikConfig(data) {
-    return this.makeRequest('/settings.updateTraefikConfig', 'POST', data);
-  }
+  async updateTraefikConfig(traefikConfig) {
+    return this.makeRequest('/settings.updateTraefikConfig', 'POST', {
+      traefikConfig,
+    });
+  } 
 
   async readWebServerTraefikConfig() {
     return this.makeRequest('/settings.readWebServerTraefikConfig');
   }
 
-  async updateWebServerTraefikConfig(data) {
-    return this.makeRequest('/settings.updateWebServerTraefikConfig', 'POST', data);
+  async updateWebServerTraefikConfig(traefikConfig) {
+    return this.makeRequest('/settings.updateWebServerTraefikConfig', 'POST', {
+      traefikConfig,
+    });
   }
+
 
   async readMiddlewareTraefikConfig() {
     return this.makeRequest('/settings.readMiddlewareTraefikConfig');
   }
 
-  async updateMiddlewareTraefikConfig(data) {
-    return this.makeRequest('/settings.updateMiddlewareTraefikConfig', 'POST', data);
+  async updateMiddlewareTraefikConfig(traefikConfig) {
+    return this.makeRequest('/settings.updateMiddlewareTraefikConfig', 'POST', {
+      traefikConfig,
+    });
   }
+
 
   async checkAndUpdateImage() {
     return this.makeRequest('/settings.checkAndUpdateImage', 'POST');
@@ -99,8 +116,11 @@ export default class Settings extends Api {
     return this.makeRequest('/settings.readDirectories');
   }
 
-  async updateTraefikFile(data) {
-    return this.makeRequest('/settings.updateTraefikFile', 'POST', data);
+  async updateTraefikFile(path, traefikConfig) {
+    return this.makeRequest('/settings.updateTraefikFile', 'POST', {
+      path,
+      traefikConfig,
+    });
   }
 
   async readTraefikFile(path) {
@@ -119,8 +139,8 @@ export default class Settings extends Api {
     return this.makeRequest('/settings.readTraefikEnv');
   }
 
-  async writeTraefikEnv(data) {
-    return this.makeRequest('/settings.writeTraefikEnv', 'POST', data);
+  async writeTraefikEnv(env) {
+    return this.makeRequest('/settings.writeTraefikEnv', 'POST', { env });
   }
 
   async haveTraefikDashboardPortEnabled() {

@@ -3,88 +3,306 @@
 import Api from '../utils/makeRequest.js';
 
 export default class Applications extends Api {
-  async create(data) {
-    return this.makeRequest('/application.create', 'POST', data);
-  }
+    async create(name, appName, description, projectId) {
+        return this.makeRequest('/application.create', 'POST', {
+          name,
+          appName,
+          description,
+          projectId,
+        });
+      }
+    
+      async reload(appName, applicationId) {
+        return this.makeRequest('/application.reload', 'POST', {
+          appName,
+          applicationId,
+        });
+      }
+    
 
   async one(applicationId) {
     return this.makeRequest(`/application.one?applicationId=${applicationId}`);
   }
 
-  async reload(data) {
-    return this.makeRequest('/application.reload', 'POST', data);
+  async delete(applicationId) {
+    return this.makeRequest('/application.delete', 'POST', { applicationId });
   }
 
-  async delete(data) {
-    return this.makeRequest('/application.delete', 'POST', data);
+  async stop(applicationId) {
+    return this.makeRequest('/application.stop', 'POST', { applicationId });
   }
 
-  async stop(data) {
-    return this.makeRequest('/application.stop', 'POST', data);
+  async start(applicationId) {
+    return this.makeRequest('/application.start', 'POST', { applicationId });
   }
 
-  async start(data) {
-    return this.makeRequest('/application.start', 'POST', data);
+  async redeploy(applicationId) {
+    return this.makeRequest('/application.redeploy', 'POST', { applicationId });
   }
 
-  async redeploy(data) {
-    return this.makeRequest('/application.redeploy', 'POST', data);
+  async saveEnvironment(applicationId, env, buildArgs) {
+    return this.makeRequest('/application.saveEnvironment', 'POST', {
+      applicationId,
+      env,
+      buildArgs,
+    });
   }
 
-  async saveEnvironment(data) {
-    return this.makeRequest('/application.saveEnvironment', 'POST', data);
+  async saveBuildType(
+    applicationId,
+    buildType,
+    dockerfile,
+    dockerContextPath,
+    publishDirectory
+  ) {
+    return this.makeRequest('/application.saveBuildType', 'POST', {
+      applicationId,
+      buildType,
+      dockerfile,
+      dockerContextPath,
+      publishDirectory,
+    });
   }
 
-  async saveBuildType(data) {
-    return this.makeRequest('/application.saveBuildType', 'POST', data);
+  async saveGithubProvider(
+    applicationId,
+    repository,
+    branch,
+    owner,
+    buildPath,
+    githubId
+  ) {
+    return this.makeRequest('/application.saveGithubProvider', 'POST', {
+      applicationId,
+      repository,
+      branch,
+      owner,
+      buildPath,
+      githubId,
+    });
   }
 
-  async saveGithubProvider(data) {
-    return this.makeRequest('/application.saveGithubProvider', 'POST', data);
+  async saveGitlabProvider(
+    applicationId,
+    gitlabBranch,
+    gitlabBuildPath,
+    gitlabOwner,
+    gitlabRepository,
+    gitlabId,
+    gitlabProjectId,
+    gitlabPathNamespace
+  ) {
+    return this.makeRequest('/application.saveGitlabProvider', 'POST', {
+      applicationId,
+      gitlabBranch,
+      gitlabBuildPath,
+      gitlabOwner,
+      gitlabRepository,
+      gitlabId,
+      gitlabProjectId,
+      gitlabPathNamespace,
+    });
   }
 
-  async saveGitlabProvider(data) {
-    return this.makeRequest('/application.saveGitlabProvider', 'POST', data);
+  async saveBitbucketProvider(
+    bitbucketBranch,
+    bitbucketBuildPath,
+    bitbucketOwner,
+    bitbucketRepository,
+    bitbucketId,
+    applicationId
+  ) {
+    return this.makeRequest('/application.saveBitbucketProvider', 'POST', {
+      bitbucketBranch,
+      bitbucketBuildPath,
+      bitbucketOwner,
+      bitbucketRepository,
+      bitbucketId,
+      applicationId,
+    });
   }
 
-  async saveBitbucketProvider(data) {
-    return this.makeRequest('/application.saveBitbucketProvider', 'POST', data);
+  async saveDockerProvider(
+    dockerImage,
+    applicationId,
+    username,
+    password
+  ) {
+    return this.makeRequest('/application.saveDockerProvider', 'POST', {
+      dockerImage,
+      applicationId,
+      username,
+      password,
+    });
   }
 
-  async saveDockerProvider(data) {
-    return this.makeRequest('/application.saveDockerProvider', 'POST', data);
+  async saveGitProvider(
+    customGitBranch,
+    applicationId,
+    customGitBuildPath,
+    customGitUrl,
+    customGitSSHKeyId
+  ) {
+    return this.makeRequest('/application.saveGitProdiver', 'POST', {
+      customGitBranch,
+      applicationId,
+      customGitBuildPath,
+      customGitUrl,
+      customGitSSHKeyId,
+    });
   }
 
-  async saveGitProvider(data) {
-    return this.makeRequest('/application.saveGitProdiver', 'POST', data);
+  async markRunning(applicationId) {
+    return this.makeRequest('/application.markRunning', 'POST', { applicationId });
+  }
+  
+
+  async update(
+    applicationId,
+    name,
+    appName,
+    description,
+    env,
+    buildArgs,
+    memoryReservation,
+    memoryLimit,
+    cpuReservation,
+    cpuLimit,
+    title,
+    enabled,
+    subtitle,
+    command,
+    refreshToken,
+    sourceType,
+    repository,
+    owner,
+    branch,
+    buildPath,
+    autoDeploy,
+    gitlabProjectId,
+    gitlabRepository,
+    gitlabOwner,
+    gitlabBranch,
+    gitlabBuildPath,
+    gitlabPathNamespace,
+    bitbucketRepository,
+    bitbucketOwner,
+    bitbucketBranch,
+    bitbucketBuildPath,
+    username,
+    password,
+    dockerImage,
+    customGitUrl,
+    customGitBranch,
+    customGitBuildPath,
+    customGitSSHKeyId,
+    dockerfile,
+    dockerContextPath,
+    dropBuildPath,
+    healthCheckSwarm,
+    restartPolicySwarm,
+    placementSwarm,
+    updateConfigSwarm,
+    rollbackConfigSwarm,
+    modeSwarm,
+    labelsSwarm,
+    networkSwarm,
+    replicas,
+    applicationStatus,
+    buildType,
+    publishDirectory,
+    createdAt,
+    registryId,
+    projectId,
+    githubId,
+    gitlabId,
+    bitbucketId
+  ) {
+    return this.makeRequest('/application.update', 'POST', {
+      applicationId,
+      name,
+      appName,
+      description,
+      env,
+      buildArgs,
+      memoryReservation,
+      memoryLimit,
+      cpuReservation,
+      cpuLimit,
+      title,
+      enabled,
+      subtitle,
+      command,
+      refreshToken,
+      sourceType,
+      repository,
+      owner,
+      branch,
+      buildPath,
+      autoDeploy,
+      gitlabProjectId,
+      gitlabRepository,
+      gitlabOwner,
+      gitlabBranch,
+      gitlabBuildPath,
+      gitlabPathNamespace,
+      bitbucketRepository,
+      bitbucketOwner,
+      bitbucketBranch,
+      bitbucketBuildPath,
+      username,
+      password,
+      dockerImage,
+      customGitUrl,
+      customGitBranch,
+      customGitBuildPath,
+      customGitSSHKeyId,
+      dockerfile,
+      dockerContextPath,
+      dropBuildPath,
+      healthCheckSwarm,
+      restartPolicySwarm,
+      placementSwarm,
+      updateConfigSwarm,
+      rollbackConfigSwarm,
+      modeSwarm,
+      labelsSwarm,
+      networkSwarm,
+      replicas,
+      applicationStatus,
+      buildType,
+      publishDirectory,
+      createdAt,
+      registryId,
+      projectId,
+      githubId,
+      gitlabId,
+      bitbucketId,
+    });
   }
 
-  async markRunning(data) {
-    return this.makeRequest('/application.markRunning', 'POST', data);
+  async refreshToken(applicationId) {
+    return this.makeRequest('/application.refreshToken', 'POST', { applicationId });
   }
 
-  async update(data) {
-    return this.makeRequest('/application.update', 'POST', data);
+  async deploy(applicationId) {
+    return this.makeRequest('/application.deploy', 'POST', { applicationId });
   }
 
-  async refreshToken(data) {
-    return this.makeRequest('/application.refreshToken', 'POST', data);
+  async cleanQueues(applicationId) {
+    return this.makeRequest('/application.cleanQueues', 'POST', { applicationId });
   }
 
-  async deploy(data) {
-    return this.makeRequest('/application.deploy', 'POST', data);
+  async updateTraefikConfig(applicationId, traefikConfig) {
+    return this.makeRequest('/application.updateTraefikConfig', 'POST', {
+      applicationId,
+      traefikConfig,
+    });
   }
 
-  async cleanQueues(data) {
-    return this.makeRequest('/application.cleanQueues', 'POST', data);
-  }
 
   async readTraefikConfig(applicationId) {
     return this.makeRequest(`/application.readTraefikConfig?applicationId=${applicationId}`);
-  }
-
-  async updateTraefikConfig(data) {
-    return this.makeRequest('/application.updateTraefikConfig', 'POST', data);
   }
 
   async readAppMonitoring(appName) {

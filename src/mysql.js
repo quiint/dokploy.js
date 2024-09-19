@@ -3,47 +3,117 @@
 import Api from '../utils/makeRequest.js';
 
 export default class MySQL extends Api {
-  async create(data) {
-    return this.makeRequest('/mysql.create', 'POST', data);
+  async create(
+    name,
+    appName,
+    dockerImage,
+    projectId,
+    description,
+    databaseName,
+    databaseUser,
+    databasePassword,
+    databaseRootPassword
+  ) {
+    return this.makeRequest('/mysql.create', 'POST', {
+      name,
+      appName,
+      dockerImage,
+      projectId,
+      description,
+      databaseName,
+      databaseUser,
+      databasePassword,
+      databaseRootPassword,
+    });
+  }
+
+  async start(mysqlId) {
+    return this.makeRequest('/mysql.start', 'POST', { mysqlId });
+  }
+
+  async stop(mysqlId) {
+    return this.makeRequest('/mysql.stop', 'POST', { mysqlId });
   }
 
   async one(mysqlId) {
     return this.makeRequest(`/mysql.one?mysqlId=${mysqlId}`);
   }
 
-  async start(data) {
-    return this.makeRequest('/mysql.start', 'POST', data);
+
+  async saveExternalPort(mysqlId, externalPort) {
+    return this.makeRequest('/mysql.saveExternalPort', 'POST', {
+      mysqlId,
+      externalPort,
+    });
   }
 
-  async stop(data) {
-    return this.makeRequest('/mysql.stop', 'POST', data);
+
+  async deploy(mysqlId) {
+    return this.makeRequest('/mysql.deploy', 'POST', { mysqlId });
   }
 
-  async saveExternalPort(data) {
-    return this.makeRequest('/mysql.saveExternalPort', 'POST', data);
+  async changeStatus(mysqlId, applicationStatus) {
+    return this.makeRequest('/mysql.changeStatus', 'POST', {
+      mysqlId,
+      applicationStatus,
+    });
+  }
+  async reload(mysqlId, appName) {
+    return this.makeRequest('/mysql.reload', 'POST', { mysqlId, appName });
   }
 
-  async deploy(data) {
-    return this.makeRequest('/mysql.deploy', 'POST', data);
+  async remove(mysqlId) {
+    return this.makeRequest('/mysql.remove', 'POST', { mysqlId });
   }
 
-  async changeStatus(data) {
-    return this.makeRequest('/mysql.changeStatus', 'POST', data);
+  async saveEnvironment(mysqlId, env) {
+    return this.makeRequest('/mysql.saveEnvironment', 'POST', {
+      mysqlId,
+      env,
+    });
   }
 
-  async reload(data) {
-    return this.makeRequest('/mysql.reload', 'POST', data);
-  }
-
-  async remove(data) {
-    return this.makeRequest('/mysql.remove', 'POST', data);
-  }
-
-  async saveEnvironment(data) {
-    return this.makeRequest('/mysql.saveEnvironment', 'POST', data);
-  }
-
-  async update(data) {
-    return this.makeRequest('/mysql.update', 'POST', data);
+  async update(
+    mysqlId,
+    name,
+    appName,
+    description,
+    databaseName,
+    databaseUser,
+    databasePassword,
+    databaseRootPassword,
+    dockerImage,
+    command,
+    env,
+    memoryReservation,
+    memoryLimit,
+    cpuReservation,
+    cpuLimit,
+    externalPort,
+    applicationStatus,
+    createdAt,
+    projectId
+  ) {
+    return this.makeRequest('/mysql.update', 'POST', {
+      mysqlId,
+      name,
+      appName,
+      description,
+      databaseName,
+      databaseUser,
+      databasePassword,
+      databaseRootPassword,
+      dockerImage,
+      command,
+      env,
+      memoryReservation,
+      memoryLimit,
+      cpuReservation,
+      cpuLimit,
+      externalPort,
+      applicationStatus,
+      createdAt,
+      projectId,
+    });
   }
 }

@@ -3,35 +3,64 @@
 import Api from '../utils/makeRequest.js';
 
 export default class Backup extends Api {
-  async create(data) {
-    return this.makeRequest('/backup.create', 'POST', data);
-  }
+    async create(
+        schedule,
+        enabled,
+        prefix,
+        destinationId,
+        database,
+        mariadbId,
+        mysqlId,
+        postgresId,
+        mongoId,
+        databaseType
+      ) {
+        return this.makeRequest('/backup.create', 'POST', {
+          schedule,
+          enabled,
+          prefix,
+          destinationId,
+          database,
+          mariadbId,
+          mysqlId,
+          postgresId,
+          mongoId,
+          databaseType,
+        });
+      }
+    
+      async update(schedule, enabled, prefix, backupId, destinationId, database) {
+        return this.makeRequest('/backup.update', 'POST', {
+          schedule,
+          enabled,
+          prefix,
+          backupId,
+          destinationId,
+          database,
+        });
+      }
 
   async one(backupId) {
     return this.makeRequest(`/backup.one?backupId=${backupId}`);
   }
 
-  async update(data) {
-    return this.makeRequest('/backup.update', 'POST', data);
+  async remove(backupId) {
+    return this.makeRequest('/backup.remove', 'POST', { backupId });
   }
 
-  async remove(data) {
-    return this.makeRequest('/backup.remove', 'POST', data);
+  async manualBackupPostgres(backupId) {
+    return this.makeRequest('/backup.manualBackupPostgres', 'POST', {
+      backupId,
+    });
   }
 
-  async manualBackupPostgres(data) {
-    return this.makeRequest('/backup.manualBackupPostgres', 'POST', data);
+  async remove(backupId) {
+    return this.makeRequest('/backup.remove', 'POST', { backupId });
   }
 
-  async manualBackupMySql(data) {
-    return this.makeRequest('/backup.manualBackupMySql', 'POST', data);
-  }
-
-  async manualBackupMariadb(data) {
-    return this.makeRequest('/backup.manualBackupMariadb', 'POST', data);
-  }
-
-  async manualBackupMongo(data) {
-    return this.makeRequest('/backup.manualBackupMongo', 'POST', data);
+  async manualBackupPostgres(backupId) {
+    return this.makeRequest('/backup.manualBackupPostgres', 'POST', {
+      backupId,
+    });
   }
 }

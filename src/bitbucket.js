@@ -3,9 +3,25 @@
 import Api from '../utils/makeRequest.js';
 
 export default class Bitbucket extends Api {
-  async create(data) {
-    return this.makeRequest('/bitbucket.create', 'POST', data);
-  }
+    async create(
+        bitbucketId,
+        bitbucketUsername,
+        appPassword,
+        bitbucketWorkspaceName,
+        gitProviderId,
+        authId,
+        name
+      ) {
+        return this.makeRequest('/bitbucket.create', 'POST', {
+          bitbucketId,
+          bitbucketUsername,
+          appPassword,
+          bitbucketWorkspaceName, 
+          gitProviderId,
+          authId,
+          name,
+        });
+      }
 
   async one(bitbucketId) {
     return this.makeRequest(`/bitbucket.one?bitbucketId=${bitbucketId}`);
@@ -27,11 +43,29 @@ export default class Bitbucket extends Api {
     return this.makeRequest(url);
   }
 
-  async testConnection(data) {
-    return this.makeRequest('/bitbucket.testConnection', 'POST', data);
+  async testConnection(bitbucketId, bitbucketUsername, workspaceName) {
+    return this.makeRequest('/bitbucket.testConnection', 'POST', {
+      bitbucketId,
+      bitbucketUsername,
+      workspaceName,
+    });
   }
 
-  async update(data) {
-    return this.makeRequest('/bitbucket.update', 'POST', data);
+  async update(
+    bitbucketId,
+    bitbucketUsername,
+    appPassword,
+    bitbucketWorkspaceName,
+    gitProviderId,
+    name
+  ) {
+    return this.makeRequest('/bitbucket.update', 'POST', {
+      bitbucketId,
+      bitbucketUsername,
+      appPassword,
+      bitbucketWorkspaceName,
+      gitProviderId,
+      name,
+    });
   }
 }

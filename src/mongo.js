@@ -3,47 +3,108 @@
 import Api from '../utils/makeRequest.js';
 
 export default class Mongo extends Api {
-  async create(data) {
-    return this.makeRequest('/mongo.create', 'POST', data);
-  }
+    async create(
+        name,
+        appName,
+        dockerImage,
+        projectId,
+        description,
+        databaseUser,
+        databasePassword
+      ) {
+        return this.makeRequest('/mongo.create', 'POST', {
+          name,
+          appName,
+          dockerImage,
+          projectId,
+          description,
+          databaseUser,
+          databasePassword,
+        });
+      }
 
   async one(mongoId) {
     return this.makeRequest(`/mongo.one?mongoId=${mongoId}`);
   }
 
-  async start(data) {
-    return this.makeRequest('/mongo.start', 'POST', data);
+  async start(mongoId) {
+    return this.makeRequest('/mongo.start', 'POST', { mongoId });
   }
 
-  async stop(data) {
-    return this.makeRequest('/mongo.stop', 'POST', data);
+  async stop(mongoId) {
+    return this.makeRequest('/mongo.stop', 'POST', { mongoId });
   }
 
-  async saveExternalPort(data) {
-    return this.makeRequest('/mongo.saveExternalPort', 'POST', data);
+  async saveExternalPort(mongoId, externalPort) {
+    return this.makeRequest('/mongo.saveExternalPort', 'POST', {
+      mongoId,
+      externalPort,
+    });
   }
 
-  async deploy(data) {
-    return this.makeRequest('/mongo.deploy', 'POST', data);
+  async deploy(mongoId) {
+    return this.makeRequest('/mongo.deploy', 'POST', { mongoId });
   }
 
-  async changeStatus(data) {
-    return this.makeRequest('/mongo.changeStatus', 'POST', data);
+  async changeStatus(mongoId, applicationStatus) {
+    return this.makeRequest('/mongo.changeStatus', 'POST', {
+      mongoId,
+      applicationStatus,
+    });
   }
 
-  async reload(data) {
-    return this.makeRequest('/mongo.reload', 'POST', data);
+  async reload(mongoId, appName) {
+    return this.makeRequest('/mongo.reload', 'POST', { mongoId, appName });
   }
 
-  async remove(data) {
-    return this.makeRequest('/mongo.remove', 'POST', data);
+  async remove(mongoId) {
+    return this.makeRequest('/mongo.remove', 'POST', { mongoId });
   }
 
-  async saveEnvironment(data) {
-    return this.makeRequest('/mongo.saveEnvironment', 'POST', data);
+  async saveEnvironment(mongoId, env) {
+    return this.makeRequest('/mongo.saveEnvironment', 'POST', {
+      mongoId,
+      env,
+    });
   }
 
-  async update(data) {
-    return this.makeRequest('/mongo.update', 'POST', data);
+  async update(
+    mongoId,
+    name,
+    appName,
+    description,
+    databaseUser,
+    databasePassword,
+    dockerImage,
+    command,
+    env,
+    memoryReservation,
+    memoryLimit,
+    cpuReservation,
+    cpuLimit,
+    externalPort,
+    applicationStatus,
+    createdAt,
+    projectId
+  ) {
+    return this.makeRequest('/mongo.update', 'POST', {
+      mongoId,
+      name,
+      appName,
+      description,
+      databaseUser,
+      databasePassword,
+      dockerImage,
+      command,
+      env,
+      memoryReservation,
+      memoryLimit,
+      cpuReservation,
+      cpuLimit,
+      externalPort,
+      applicationStatus,
+      createdAt,
+      projectId,
+    });
   }
 }

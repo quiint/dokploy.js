@@ -3,19 +3,29 @@
 import Api from '../utils/makeRequest.js';
 
 export default class Redirects extends Api {
-  async create(data) {
-    return this.makeRequest('/redirects.create', 'POST', data);
-  }
+    async create(regex, replacement, permanent, applicationId) {
+        return this.makeRequest('/redirects.create', 'POST', {
+          regex,
+          replacement,
+          permanent,
+          applicationId,
+        });
+      }
 
   async one(redirectId) {
     return this.makeRequest(`/redirects.one?redirectId=${redirectId}`);
   }
 
-  async delete(data) {
-    return this.makeRequest('/redirects.delete', 'POST', data);
+  async delete(redirectId) {
+    return this.makeRequest('/redirects.delete', 'POST', { redirectId });
   }
 
-  async update(data) {
-    return this.makeRequest('/redirects.update', 'POST', data);
+  async update(redirectId, regex, replacement, permanent) {
+    return this.makeRequest('/redirects.update', 'POST', {
+      redirectId,
+      regex,
+      replacement,
+      permanent,
+    });
   }
 }
