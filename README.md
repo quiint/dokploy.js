@@ -26,7 +26,16 @@ const dokploy = new Dokploy(baseUrl, apiToken)
     try {
         const response = await dokploy.user.all()
         console.log(response)
-
+        const db = await dokploy.mongo.create(
+            "my-mongo-db",
+            "my-mongo-app",
+            "mongo:6",
+            "hKJ9MANs8hQ2ie40YVjL1",
+            "my description here",
+            "admin",
+            "passw0rd!"
+        )
+        console.log("db created, ", db)
     } catch (error) {
         console.error('Error:', error.message)
     }
