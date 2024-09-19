@@ -41,5 +41,9 @@ const dokploy = new Dokploy(baseUrl, apiToken)
     }
 ```
 
+# Contributing
+Contributing efforts can be made in the GitHub repository, [found here.](https://github.com/quiint/dokploy.js)
+
+
 # License
 Licensed under the MIT License.
